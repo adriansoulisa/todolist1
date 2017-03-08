@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta type="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" type="text/css" href="todolist.css">
+</head>
+<body>
+  <header><h1></h1></header>
+  <section>
+    <form action="#" method="post">
+      <div>
+        <label for="item">Inputan</label>
+        <input type="text" name="item" id="item" placeholder="input dong" required>
+        <input type="submit" value="Add">
+      </div>
+      <ul id="todolist"></ul>
+    </form>
+  </section>
+  <footer>
+  </footer>
+<script>
+(function(){
+
+  var todo = document.querySelector( '#todolist' ),
+      form = document.querySelector( 'form' ),
+      field = document.querySelector( '#item' );
+    
+  form.addEventListener( 'submit', function( ev ) {
+    todo.innerHTML += '<li>' + field.value + '</li>';
+    field.value = '';
+    field.focus();
+    ev.preventDefault();
+  }, false);
+
+  todo.addEventListener( 'click', function( ev ) {
+    var t = ev.target;
+    if ( t.tagName === 'LI' ) {
+      if ( t.classList.contains( 'done' ) ) {
+        t.parentNode.removeChild( t );
+      } else {  
+        t.classList.add( 'done' );
+      }
+    };
+    ev.preventDefault();
+  }, false);
+
+})();
+</script>
+</body>
+</html>
